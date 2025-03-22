@@ -26,6 +26,7 @@ public class CheckingAccount implements hasMenu{
 		"4) Withdraw";
 	}
 
+
 	public double getBalance(){
                 return balance;
                 //Change so that if the input is !double then returns 0

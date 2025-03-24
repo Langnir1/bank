@@ -53,11 +53,11 @@ public class Customer extends User{
 			}
 			if(choice.equals("2")){
 				System.out.println("Checking account");
-				checking.menu();
+				checking.start();
 			}
 			if(choice.equals("3")){
 				System.out.println("Savings account");
-				savings.menu();
+				savings.start();
 			}
 			if(choice.equals("4")){
 				System.out.println("Change PIN");

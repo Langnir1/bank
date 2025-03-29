@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.*;
 //Comment on the change to Scanner and ArrayList over util.*
 //I looked up what the difference was and found a response that implied that the .* impacts the compile time. I figured it might be a good idea to try and specify
 //which packages I'm using.
@@ -12,6 +13,34 @@ public class Bank implements hasMenu{
 	public static void main(String[] args){
 		Bank bank = new Bank();
 		bank.start();
+
+		bank.loadCustomers();
+
+		bank.customers.add(new Customer("testUser", "1111"));
+		bank.customers.add(new Customer("johnDoe", "1234"));
+		bank.saveCustomers();
+	}
+
+	@SuppressWarnings("unchecked")
+	public void saveCustomers(){
+		try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("customers.dat"))){
+		out.writeObject(customers);
+		}
+		catch(Exception e){
+			//For self reference, Exception e is a general catch that covers, I think, all errors. Since I don't know what errors to catch, I'm just trying this. In other words, learn errors me!
+			System.out.println("Error saving customers");
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public void loadCustomers(){
+		File file = new File("customers.dat");
+		try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("customers.dat"))){
+		customers = (ArrayList<Customer>) in.readObject();
+		}
+		catch(Exception e){
+			System.out.println("Error loading customers");
+		}
 	}
 
 	public Bank(){

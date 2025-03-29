@@ -111,5 +111,9 @@ public class Customer extends User{
 		report += "Savings Account Balance $" + this.savings.getBalance() + "\n";
 		return report;
 	}
+
+	public SavingsAccount getSavings(){
+		return savings;
+	}
 	
 }
